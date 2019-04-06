@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { store } from './store';
+import { withRedux } from './withRedux'
 
 class App extends Component {
   render() {
@@ -9,20 +11,13 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Num: {this.props.state.num}
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <button onClick={() => store.dispatch({ type: 'CHANGE' })} >Click me</button>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+export default withRedux(App);
